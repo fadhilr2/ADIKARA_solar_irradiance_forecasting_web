@@ -1,0 +1,5 @@
+/* Reset only the parts that conflict with Bootstrap */
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}

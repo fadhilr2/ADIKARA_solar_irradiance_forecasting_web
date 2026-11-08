@@ -1,0 +1,33 @@
+/* Full-width Bootstrap reset */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Loading screen */
+.solar-loading {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Form slider accent */
+.form-range::-webkit-slider-thumb {
+  background-color: #fd7e14;
+}
+.form-range::-moz-range-thumb {
+  background-color: #fd7e14;
+}
+
+/* Card subtle hover elevation */
+.card {
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-1px);
+}
