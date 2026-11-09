@@ -92,6 +92,25 @@ def health():
     return {"status": "ok", "pipeline": "Option A (NASA POWER)"}
 
 
+# Mount frontend production build if available
+DIST_DIR = Path(__file__).resolve().parent.parent / "dist"
+if DIST_DIR.exists():
+    from fastapi.staticfiles import StaticFiles
+    from starlette.responses import FileResponse
+
+    if (DIST_DIR / "assets").exists():
+        app.mount("/assets", StaticFiles(directory=DIST_DIR / "assets"), name="assets")
+
+    @app.get("/{full_path:path}")
+    def serve_frontend(full_path: str):
+        file_path = DIST_DIR / full_path
+        if full_path and file_path.exists() and file_path.is_file():
+            return FileResponse(file_path)
+        return FileResponse(DIST_DIR / "index.html")
+
+
 if __name__ == "__main__":
+    import os
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=False)

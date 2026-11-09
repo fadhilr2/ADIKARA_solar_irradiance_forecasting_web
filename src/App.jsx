@@ -6,7 +6,7 @@ import PvYieldWidget from './components/PvYieldWidget'
 import MetricsCard from './components/MetricsCard'
 import './App.css'
 
-const API_BASE = 'http://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? 'http://localhost:8000' : '')
 
 export default function App() {
   const [forecast, setForecast] = useState(null)
